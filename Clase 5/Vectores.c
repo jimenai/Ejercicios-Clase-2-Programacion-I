@@ -34,3 +34,22 @@ int buscarMaximo(int numerosEnteros[], int tamanoVector){
 
 }
 
+int buscarValor(int numerosEnteros[], int tamanoVector, int valor){
+    int i;
+    int posicion;
+
+    for(i=0; i<tamanoVector; i++){
+
+        if(numerosEnteros[i] == valor){
+            posicion = i;
+            break;
+        }
+        else{
+            posicion = -1;
+        }
+    }
+    return posicion;
+
+
+}
+
