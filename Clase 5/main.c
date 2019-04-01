@@ -18,5 +18,7 @@ int main()
 
     maximo = buscarMaximo(numeros,T);
     printf("El valor maximo del array es: %d", maximo);
+    posicion = buscarValor(numeros, T , 3);
+    printf("La posicion del valor encontrado es: %d", posicion);
     return 0;
 }
