@@ -1,80 +1,93 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include <conio.h>
+#include "funcionesAuxiliares.h"
+#include "ArrayPeliculas.h"
+#include "defines.h"
+
 
 int main()
 {
-   ejercicio1();
+    int flag = 0;
+    int salir = 0;
+    eGenero generos[TAM_GENEROS] ={
+        {1, "Accion"},
+        {2, "Comedia"},
+        {3, "Drama"},
+        {4, "Romance"},
+        {5, "Terror"}
 
-}
-/*
-float sacarPromedio(int suma, int cantidad){
+    };
 
-    float promedio;
+    eActor actores[TAM_ACTORES]={   {1, "Scarlett Johansson","Argentina"},{2, "Robert Downey Jr", "EEUU"},{3, "Mark Ruffalo", "canada"},{4, "Chris Evans", "EEUU"},{5, "Chris Hemsworth" , " Argentina"},{6, "Samuel Jackson", "EEUU"},
+        {7, "Gwyneth Paltrow", "Canada"},{8, "Paul Rudd",""},{9, "Bradley Cooper", "EEUU"},{10, "Josh Brolin", "Canada"}
 
-    promedio = (float)suma/cantidad;
+    };
 
-    return promedio;
-}
+    ePelicula pelis[TAM_PELICULAS] = {{1000, "Thor",{2019,2,1},{1, "Accion"}, {2, "Robert  Downey Jr", "EEUU"}},
+        {1001, "Cellular",{2013,5,1}, {1,"Accion"},{5, "Chris Hemsworth" , " Argentina"}},{1002, "Men in Black 4",{2004,4,1},{1,"Accion"},{4, "Chris Evans", "EEUU"}},
+        {1003, "IronMan",{2019,5,1},{1,"Accion"},  {5, "Chris Hemsworth" , " Argentina"}},
+        {1004, "13  Going on 30",{2012,2,1},{1,"Accion"},{2, "Robert  Downey Jr", "EEUU"}},
+        {1005, "Lucy", {2004,3,4}, {4,"Romance"}, {3, "Mark Ruffalo", "canada"}},
+        {1006, "Nace una estrella", {2014,1,1},{1,"Accion"}, {1, "Scarlett Johansson","Argentina"}},
+        {1007, "¿Dime con cuantos?", {2018,9,4}, {4,"Romance"},{9, "Bradley Cooper", "EEUU"}},
+        {1008, "Guardianes de la galaxia", {2010,4,4},{4, "Romance"},{4, "Chris Evans", "EEUU"}},
+        {1009, "A perfect murder",  {2014,9,1},{1,"Accion"},{9, "Bradley Cooper", "EEUU"}},
+        {1010, "La isla", {1995,7,3},{3,"Drama"}, {7, "Gwyneth Paltrow", "Canada"}},
+        {1011, "Que paso ayer", {2005,1,3},{3,"Drama"},{1, "Scarlett Johansson","Argentina"}},
+        {1012, "Home Alone 3",{2013,9,2},{2,"Comedia" }, {9, "Bradley Cooper", "EEUU"}},
+        {1013, "Deadpool",{2015, 12, 7},{2,"Comedia"},{1, "Scarlett Johansson","Argentina"}},
+        {1014, "Sherlock Holmes",{1997,1,2}, {1,"Accion"},{10, "Josh Brolin", "Canada"}},
+        {1015, "Men in Black 3", {2015,10,1}, {1,"Accion"},{2, "Robert  Downey Jr", "EEUU"}},
+        {1016, "Avengers infinity war",  {2011,2,1},{1,"Accion"},{10, "Josh Brolin", "Canada"}},
+        {1017, "Grandes esperanzas", {2010,10,1}, {1,"Accion" },{10, "Josh Brolin", "Canada"}},
+        {1018, "SWAT",  {2017,10,1}, {4,"Romance"},{7, "Gwyneth Paltrow", "Canada"}},
+        {1019, "XxX",  {1995,7,4}, {1,"Accion"},{6, "Samuel Jackson", "EEUU"}}};
 
- int pedirNota (void){
+     do{
+        switch(menu())
+        {
 
-    int nota;
+        case 1:
+            mostrarPeliculasConGeneroActor(pelis, TAM_PELICULAS, actores, TAM_ACTORES, generos, TAM_GENEROS);
+            system("pause");
+            break;
 
-    do{
-        printf("Ingrese nota: ");
-        scanf("%d", &nota);
+        case 2:
+            mostrarPeliculaNacionalidadActorEEUU(pelis, TAM_PELICULAS, actores, TAM_ACTORES, generos, TAM_GENEROS);
+            system("pause");
+            break;
 
-    }while(nota>10 || nota < 0);
+        case 3:
+           mostrarGenerosConRespectivasPeliculas(pelis, TAM_PELICULAS, actores, TAM_ACTORES, generos, TAM_GENEROS);
+            system("pause");
+            break;
 
-    return nota;
- }
+        case 4:
+            mostrarGeneroConCantidadPelicula(pelis, TAM_PELICULAS, actores, TAM_ACTORES, generos, TAM_GENEROS);
+            system("pause");
+            break;
 
-
- int aprobarMateria(int notaMinima, int nota){
-    int valor;
-    if(nota >= notaMinima){
-        valor = 1;
-    }
-    else{
-        valor = 0;
-    }
-    return valor;
- }
- */
- void ejercicio1(void){
-
-    float promedioAprobados;
-    float promedioDesaprobados;
-    int nota;
-    int sumarAprobados = 0;
-    int cantidadAprobados = 0;
-    int sumarDesaprobados = 0;
-    int cantidadDesaprobados = 0;
-    int i;
-
-    for(i=0; i<5; i++){
-        printf("Ingrese nota: ");
-        scanf("%d", &nota);
-
-        if(nota >= 6){
-            sumarAprobados += nota;
-            cantidadAprobados++;
+        case 5:
+            //generos con menos peliculas;
+            break;
+        case 6:
+            salir = 6;
+            printf("Ha salido del programa");
+            system("pause");
+            break;
+        default:
+            printf("\n Opcion invalida\n\n");
+            system("break");
         }
-        else{
-            sumarDesaprobados += nota;
-            cantidadDesaprobados++;
-        }
-    }
+    }while(salir);
 
-    promedioAprobados = (float)sumarAprobados/cantidadAprobados;
-    promedioDesaprobados = (float)sumarDesaprobados/cantidadDesaprobados;
 
-    printf("Promedio desaprobados: %.2f \n", promedioDesaprobados);
-    printf("Promedio aprobados: %.2f \n", promedioAprobados);
+    return 0;
 
 
 
-
- }
-
+};
 
